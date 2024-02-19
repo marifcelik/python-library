@@ -19,7 +19,7 @@ class Library:
                 "pages": book[3]
             })
 
-    def add_book(self, title: str, author: str, release_year: int, pages: int) -> None:
+    def add_book(self, title: str, author: str, release_year: str, pages: str) -> None:
         book = {
             "title": title,
             "author": author,
@@ -27,7 +27,7 @@ class Library:
             "pages": pages
         }
         try:
-            self.file.write(f"\n{title},{author},{release_year},{pages}\n")
+            self.file.write(f"{title},{author},{release_year},{pages}\n")
             self.file.flush()
             self.__books.append(book)
             print("Book added successfully!")
@@ -58,30 +58,32 @@ class Library:
     def books(self) -> list[dict[str, str]]:
         return self.__books
 
+
 def main():
     library = Library("books.txt")
     print("Welcome to the Library!")
-    print("1. Add a book")
-    print("2. Remove a book")
-    print("3. List all books")
-    print("4. Exit")
     while True:
+        print("1. List all books")
+        print("2. Add a book")
+        print("3. Remove a book")
+        print("4. Exit")
         choice = int(input("Enter your choice: "))
         if choice == 1:
-            title = input("Enter the title: ")
-            author = input("Enter the author: ")
-            release_year = int(input("Enter the release year: "))
-            pages = int(input("Enter the number of pages: "))
-            library.add_book(title, author, release_year, pages)
+            library.list_books()
         elif choice == 2:
             title = input("Enter the title: ")
-            library.remove_book(title)
+            author = input("Enter the author: ")
+            release_year = input("Enter the release year: ")
+            pages = input("Enter the number of pages: ")
+            library.add_book(title, author, release_year, pages)
         elif choice == 3:
-            library.list_books()
+            title = input("Enter the title: ")
+            library.remove_book(title)
         elif choice == 4:
             break
         else:
             print("Invalid choice!")
+
 
 if __name__ == "__main__":
     main()
