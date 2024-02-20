@@ -1,0 +1,24 @@
+Screen {
+    layout: horizontal;
+}
+
+.box {
+    align: center middle;
+    height: 100%;
+    width: 1fr;
+}
+
+ListView {
+    width: 50%;
+    height: auto;
+    margin: 2 2;
+}
+
+Label {
+    padding: 1 2;
+}
+
+Button {
+    margin: 1 1;
+    align: right middle;
+}
